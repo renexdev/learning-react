@@ -1,7 +1,7 @@
 import React from 'react'
 import {createStore} from "./store";
 
-const defaultStore = createStore({n: 0});
+const defaultStore = createStore({n: 1});
 
 export default function connect(selector = ()=> ({}), store = defaultStore){
 	return Component =>
@@ -27,7 +27,13 @@ export default function connect(selector = ()=> ({}), store = defaultStore){
 			}
 
 			render() {
-				
+				return (
+					<Component 
+						{...this.props} //props whatever the parent provided
+						{...selector(store.getState(), this.props)} //Current app state form getState, props pass down from the parent
+						dispatch={store.dispatch}
+					/>
+				);
 			}
-		}
+		};
 }
