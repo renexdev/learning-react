@@ -1,17 +1,18 @@
 import React from 'react';
 import {withLayout} from "./Layout" //HOC function
 import {AppIntro} from './styles'
+import Greeting from "./Greeting"
 
 //import logo from './logo.svg';
 //import './App.css';
 
 //const paragraphStyles = { backgroundColor: "orange"};
 
-export function Home(message) {
+export function Home({updateMessage}) {
 //export function Home(props) {
 //<h2>{props.message}</h2>
     //props.message="Solo lectura"
-    message="Ahora si puedo";
+    //message="Ahora si puedo";
 	//throw new Error;
     return (
         //<Layout
@@ -22,13 +23,13 @@ export function Home(message) {
 	        		To get started, edit <code>src/App.js</code> and save to reload.
 	        	</AppIntro>
 	        	<h2>UX here we go</h2>
-                
-                <h2>{message}</h2>
-                <button onClick={()=> message="from button"}> Click me!</button>
+                <Greeting/>
+                <button onClick={()=> updateMessage("from button")}> Click me!</button>
     		</React.Fragment>
     	//	)}
     	///>
     );
 }
+//                <Greeting message={message}/>
 
 export default withLayout("Welcome react")(Home);
